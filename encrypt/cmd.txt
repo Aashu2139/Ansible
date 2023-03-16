@@ -1,0 +1,10 @@
+1 create password file as a ansible valut
+
+2 # sudo ansible-vault encrypt (filename)  <----------for encrypt
+3 # sudo ansible-vault decrypt (filename)  <----------for decrypt
+  
+4 # sudo ansible-vault create (filename)   <----------no need of manual file direct encrypt
+
+5 now use of lock file in next project 
+
+6 # sudo ansible-playbook (filename) --ask-vault-pass   <-------- your encrypt file 

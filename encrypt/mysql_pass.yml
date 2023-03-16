@@ -1,0 +1,36 @@
+- name: example secret 
+  hosts: 127.0.0.1 
+  connection: local 
+  become: true 
+  vars_files: 
+        - pass1.yml 
+  tasks: 
+    - name: print password
+      debug: 
+          var: password 
+    - name: remove mysql 
+      yum: name=mariadb state=absent
+    - name: install mysql 
+      yum: name=mariadb-server state=present
+    - name: start mysql 
+      service: name=mariadb state=started
+    - name: install pip
+      yum: name=pip state=present
+    - name: install python 3.7
+      yum: name=python3.7 state=present
+    - name: install mysql-python connector
+      pip: name=mysql-connector-python state=present
+    - name: install mysql-python
+      yum: name=MySQL-python state=present
+    - name: login mysql 
+      mysql_user: 
+          login_host: localhost 
+          login_password: password 
+          login_user: root 
+          user: root 
+          password: password 
+          login_unix_socket: /var/lib/mysql/mysql.sock 
+          check_implicit_admin: yes 
+          update_password: always 
+          state: present
+#          no_log: true 

@@ -1,0 +1,16 @@
+# assignmnet 10 on host server 
+- name: assignment for http
+  hosts: 127.0.0.1
+  connection: local
+  become: true
+  tasks:
+#APACHE start+install
+   - name: install httpd
+     yum:
+      name: httpd
+      state: present
+   - name: start httpd
+     service:
+      name: httpd
+      state: started
+

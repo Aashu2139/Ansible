@@ -1,0 +1,53 @@
+#INSTALLATION OF LAMP
+- name: apache installation 
+  hosts: 127.0.0.1
+  connection: local
+  become: true
+  tasks:
+#APACHE install+start
+   - name: install httpd
+     yum:
+       name: httpd
+       state: present
+   - name: start httpd
+     service:
+       name: httpd
+       state: started
+#MARIADB install+start
+   - name: install mysql
+     yum:
+       name: mariadb-server
+       state: present
+   - name: start mysql
+     service:
+       name: mariadb
+       state: started
+#PHP install+start
+   - name: install php
+     yum:
+       name: php
+       state: present
+   - name: install php-fpm
+     yum:
+       name: php-fpm
+       state: present
+   - name: start php-fpm
+     service:
+       name: php-fpm
+       state: started
+#Enable all services 
+   - name: start httpd
+     service:
+       name: httpd
+       state: started
+       enabled: yes
+   - name: start mysql
+     service:
+       name: mariadb
+       state: started
+       enabled: yes
+   - name: start php-fpm
+     service:
+       name: php-fpm
+       state: started
+       enabled: yes

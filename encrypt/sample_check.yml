@@ -1,0 +1,11 @@
+- name: example secret 
+  hosts: 127.0.0.1 
+  connection: local 
+  become: true 
+  vars_files: 
+        - pass1.yml  
+  tasks: 
+     - name: print password
+       debug: 
+          var: username
+          var: password
